@@ -27,4 +27,4 @@ jobs:
           gcloud compute ssh staging-vm \
             --zone=us-central1-a \
             --ssh-flag="-vvv" \
-            --command="sudo docker image prune -f; sudo docker system prune -f"
+            --command="echo 'Deploying to Staging...'"
