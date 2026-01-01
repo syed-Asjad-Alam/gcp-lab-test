@@ -26,5 +26,5 @@ jobs:
         run: |
           gcloud compute ssh prod-lab-vm \
             --zone=us-central1-a \
-            --ssh-flag="-o StrictHostKeyChecking=accept-new" \
+            --ssh-flag="-vvv" \
             --command="echo 'Deploying to Production...'"
