@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy to Staging VM
         run: |
-          gcloud compute ssh staging-vm \
+          gcloud compute --project staging-test-483016 ssh staging-vm \
             --zone=us-central1-a \
             --ssh-flag="-vvv" \
             --command="echo 'Deploying to Staging...'"

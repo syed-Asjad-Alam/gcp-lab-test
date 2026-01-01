@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy to Production VM
         run: |
-          gcloud compute ssh prod-lab-vm \
+          gcloud compute --project prod-test-483016 ssh prod-lab-vm \
             --zone=us-central1-a \
             --ssh-flag="-vvv" \
             --command="echo 'Deploying to Production...'"
