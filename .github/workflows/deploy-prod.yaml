@@ -1,0 +1,30 @@
+name: Deploy to Production
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      CLOUDSDK_CORE_DISABLE_PROMPTS: 1 # This replaces the --quiet flag globally
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy to Production VM
+        run: |
+          gcloud compute ssh prod-lab-vm \
+            --zone=us-central1-a \
+            --ssh-flag="-o StrictHostKeyChecking=accept-new" \
+            --command="echo 'Deploying to Production...'"
